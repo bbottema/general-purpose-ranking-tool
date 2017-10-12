@@ -124,8 +124,8 @@ appraisalApp.controller('AppraisalController', function(AppraisalService) {
 		const weight = object.absoluteRank;
 		const maxWeight = AppraisalService.objects.length;
 
-		const color1 = 'FF0000';
-		const color2 = '000000';
+		const color1 = '000000';
+		const color2 = '00FF00';
 		const ratio = easeInQuad(weight / maxWeight, 0, 1);
 
 		const r = Math.ceil(parseInt(color1.substring(0,2), 16) * ratio + parseInt(color2.substring(0,2), 16) * (1-ratio));
