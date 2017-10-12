@@ -1,0 +1,58 @@
+body {
+    padding-top: 5rem;
+}
+
+.starter-template {
+    padding: 3rem 1.5rem;
+}
+
+.starter-template-banner {
+    text-align: center;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+    cursor: default;
+}
+
+.ng-hide-add,
+.ng-hide-remove {
+    -webkit-transition: .2s ease-in-out opacity;
+    -moz-transition: .2s ease-in-out opacity;
+    -ms-transition: .2s ease-in-out opacity;
+    -o-transition: .2s ease-in-out opacity;
+    transition: .2s ease-in-out opacity;
+    opacity: 1;
+}
+
+.ng-hide {
+    opacity: 0;
+}
+
+.card {
+    margin-top: 1.3em;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1300px
+    }
+}
+
+#result th, #result td {
+    text-align: center;
+}
+
+#result h2 {
+    color: #0275d8;
+}
+
+#exportDataModal textarea,
+#importDataModal textarea{
+    width: 100%;
+}
