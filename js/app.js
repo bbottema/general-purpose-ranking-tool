@@ -67,7 +67,8 @@ appraisalApp.factory('AppraisalService', function(SAMPLE_PRESET) {
 			function updateAbsoluteRanks(rankedEmployees) {
 				var idx = 0;
 				for (var i = 0; i < rankedEmployees.length; i++) {
-					const nextRank = i === 0 || rankedEmployees[i].weightedRank !== rankedEmployees[i - 1].weightedRank;
+					const nextRank = i === 0 ||
+                        _.floor(rankedEmployees[i].weightedRank) !== _.floor(rankedEmployees[i - 1].weightedRank);
 					idx += (nextRank) ? 1 : 0;
 					rankedEmployees[i].absoluteRank = idx;
 				}
