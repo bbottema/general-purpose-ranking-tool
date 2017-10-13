@@ -118,7 +118,7 @@
 							<tr ng-repeat="object in appraisalController.objects">
 								<td>{{object.name}}</td>
 								<td ng-repeat="category in appraisalController.categories">
-									<input name="ranking" type="number" maxlength="3" step=".1" min="0" class="form-control" ng-model="object[category.name].rank"/>
+									<input name="ranking" type="number" class="form-control" ng-model="object[category.name].rank"/>
 								</td>
 							</tr>
 							</tbody>
