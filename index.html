@@ -105,9 +105,13 @@
 				<div class="card" ng-show="appraisalController.objects.length && appraisalController.categories.length">
 					<div class="card-body">
 						<h2 class="text-left">Rank objects</h2>
+						
+						<p>Rank, don't rate. Rank 1 represents the best. Objects can share rank</p>
 
 						<table class="table">
-							<caption>Objects can share rank</caption>
+							<caption ng-hide="appraisalController.ranking.length">
+								Result will be calculated once you rank all objects for all categories
+							</caption>
 							<thead>
 							<tr>
 								<th>Object</th>
