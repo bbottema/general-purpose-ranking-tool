@@ -1,6 +1,6 @@
 var appraisalApp = angular.module('appraisalApp', ['ngAnimate']);
 
-appraisalApp.factory('AppraisalService', function() {
+appraisalApp.factory('AppraisalService', function(SAMPLE_PRESET) {
 	const AppraisalService = {
 		objects: [],
 		categories: [],
@@ -88,6 +88,9 @@ appraisalApp.factory('AppraisalService', function() {
 				AppraisalService.categories.push.apply(AppraisalService.categories, dataObj.categories);
 			}
 
+		},
+		loadSamplePreset: function() {
+            AppraisalService.importPreset(SAMPLE_PRESET);
 		}
 	};
 	return AppraisalService;
@@ -115,6 +118,8 @@ appraisalApp.controller('AppraisalController', function(AppraisalService) {
 	this.removeCategory = AppraisalService.removeCategory;
 	this.calculateWeightedRanking = AppraisalService.calculateWeightedRanking;
 	this.exportData = AppraisalService.exportData;
+	this.loadSamplePreset = AppraisalService.loadSamplePreset;
+
 	this.importPreset = function() {
 		AppraisalService.importPreset(this.presetToImport);
 		this.presetToImport = "";

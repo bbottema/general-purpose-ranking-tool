@@ -15,6 +15,7 @@
 	<script src="js/lib/angular.min.js"></script>
 	<script src="js/lib/angular-animate.min.js"></script>
 	<script src="js/app.js"></script>
+	<script src="js/sample-preset.js"></script>
 <body ng-app="appraisalApp">
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -27,7 +28,8 @@
 		<div class="starter-template-banner">
 			<h1>Object Ranking Tool</h1>
 			<p>Add objects to rank. Add categories to rank objects with.</p>
-			<button type="button" class="btn btn-light" data-toggle="modal" data-target="#importDataModal">Load preset...</button>
+			<button type="button" class="btn btn-light" ng-click="appraisalController.loadSamplePreset()">Load sample preset</button>
+			<button type="button" class="btn btn-light" data-toggle="modal" data-target="#importDataModal">Load your own preset...</button>
 		</div>
 
 		<div class="row">
