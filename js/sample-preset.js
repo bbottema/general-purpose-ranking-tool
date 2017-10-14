@@ -6,13 +6,13 @@ const SAMPLE_PRESET = JSON.stringify({
                 "rank": 1
             },
             "Form-factor": {
-                "rank": 2
+                "rank": 3
             },
             "Driving experience": {
                 "rank": 3
             },
             "Tilt / X-Factor": {
-                "rank": 1
+                "rank": 2
             }
         },
         {
@@ -21,13 +21,13 @@ const SAMPLE_PRESET = JSON.stringify({
                 "rank": 2
             },
             "Form-factor": {
-                "rank": 2
+                "rank": 3
             },
             "Driving experience": {
-                "rank": 2
+                "rank": 1
             },
             "Tilt / X-Factor": {
-                "rank": 2
+                "rank": 3
             }
         },
         {
@@ -51,7 +51,7 @@ const SAMPLE_PRESET = JSON.stringify({
                 "rank": 1
             },
             "Form-factor": {
-                "rank": 3
+                "rank": 4
             },
             "Driving experience": {
                 "rank": 4
@@ -59,12 +59,42 @@ const SAMPLE_PRESET = JSON.stringify({
             "Tilt / X-Factor": {
                 "rank": 3
             }
+        },
+        {
+            "name": "Yellow Ford GT",
+            "Color": {
+                "rank": 1
+            },
+            "Form-factor": {
+                "rank": 2
+            },
+            "Driving experience": {
+                "rank": 2
+            },
+            "Tilt / X-Factor": {
+                "rank": 2
+            }
+        },
+        {
+            "name": "Brown Nissan Cube",
+            "Color": {
+                "rank": 3
+            },
+            "Form-factor": {
+                "rank": 5
+            },
+            "Driving experience": {
+                "rank": 5
+            },
+            "Tilt / X-Factor": {
+                "rank": 4
+            }
         }
     ],
     "categories": [
         {
             "name": "Color",
-            "weight": 1
+            "weight": 0.7
         },
         {
             "name": "Form-factor",
