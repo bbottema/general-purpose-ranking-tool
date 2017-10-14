@@ -1,0 +1,53 @@
+<div class="card" ng-show="objects.length && categories.length">
+	<div class="card-body">
+		<h2 class="text-left">Rank objects</h2>
+		
+		<p>Rank, don't rate. Rank 1 represents the best. Objects can share rank</p>
+		
+		<table class="table">
+			<caption ng-show="showHint">
+				Result will be calculated once you rank all objects for all categories
+			</caption>
+			<thead>
+			<tr>
+				<th>Object</th>
+				<th ng-repeat="category in categories">{{category.name}}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="object in objects | orderBy:'name'">
+				<td>{{object.name}}</td>
+				<td ng-repeat="category in categories">
+					<input name="ranking" type="number" class="form-control" ng-model="object[category.name].rank"/>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td ng-repeat="category in categories">
+					<button type="button" class="btn btn-block btn-secondary" data-toggle="modal" data-target="#zoomInModal"
+							ng-click="focusCategory(category)">Zoom in</button>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="zoomInModal" tabindex="-1" role="dialog" aria-labelledby="zoomInModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="zoomInModalLabel">Focus on {{focussedCategory.name}}</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" ng-form name="zoomInForm">
+				body
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Finish</button>
+			</div>
+		</div>
+	</div>
+</div>
