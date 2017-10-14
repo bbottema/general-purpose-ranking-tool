@@ -31,6 +31,6 @@ function ApplicationController(RankingService, ColorService) {
         const weight = _.floor(object.weightedRank);
         const maxWeight = RankingService.objects.length;
         const percentage = weight / maxWeight;
-        return ColorService.colorize('000000', '00FF00', percentage, ColorService.CURVE_EASE_IN_QUAD);
+        return ColorService.colorize('000000', '00CC00', percentage, ColorService.CURVE_EASE_IN_QUAD);
     };
 }
