@@ -1,7 +1,7 @@
 const SAMPLE_PRESET = JSON.stringify({
     "objects": [
         {
-            "name": "Red Lamborghini",
+            "name": "Lamborghini, Red",
             "Color": {
                 "rank": 1
             },
@@ -16,7 +16,7 @@ const SAMPLE_PRESET = JSON.stringify({
             }
         },
         {
-            "name": "White BMW i5",
+            "name": "BMW i5, White",
             "Color": {
                 "rank": 2
             },
@@ -31,7 +31,7 @@ const SAMPLE_PRESET = JSON.stringify({
             }
         },
         {
-            "name": "Jaguar Silverstone",
+            "name": "Jaguar Silverstone, Silver",
             "Color": {
                 "rank": 2
             },
@@ -46,7 +46,7 @@ const SAMPLE_PRESET = JSON.stringify({
             }
         },
         {
-            "name": "Red VW Beetle",
+            "name": "VW Beetle, Red",
             "Color": {
                 "rank": 1
             },
@@ -61,7 +61,7 @@ const SAMPLE_PRESET = JSON.stringify({
             }
         },
         {
-            "name": "Yellow Ford GT",
+            "name": "Ford GT, Yellow",
             "Color": {
                 "rank": 1
             },
@@ -76,7 +76,7 @@ const SAMPLE_PRESET = JSON.stringify({
             }
         },
         {
-            "name": "Brown Nissan Cube",
+            "name": "Nissan Cube, Brown",
             "Color": {
                 "rank": 3
             },

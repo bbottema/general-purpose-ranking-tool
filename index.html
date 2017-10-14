@@ -122,7 +122,7 @@
 							</tr>
 							</thead>
 							<tbody>
-							<tr ng-repeat="object in appCtrl.objects">
+							<tr ng-repeat="object in appCtrl.objects | orderBy:'name'">
 								<td>{{object.name}}</td>
 								<td ng-repeat="category in appCtrl.categories">
 									<input name="ranking" type="number" class="form-control" ng-model="object[category.name].rank"/>
