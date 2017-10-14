@@ -1,6 +1,4 @@
-var appraisalApp = angular.module('appraisalApp');
-
-appraisalApp.constant('SAMPLE_PRESET', JSON.stringify({
+const SAMPLE_PRESET = JSON.stringify({
     "objects": [
         {
             "name": "Red Lamborghini",
@@ -81,4 +79,4 @@ appraisalApp.constant('SAMPLE_PRESET', JSON.stringify({
             "weight": 0.5
         }
     ]
-}));
+});
