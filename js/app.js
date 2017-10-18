@@ -1,4 +1,4 @@
-angular.module('rankingTool', ['ngAnimate'])
+angular.module('rankingTool', ['ngAnimate', 'dndLists'])
 
     .factory('RankingService', RankingServiceFactory)
     .factory('ColorService', ColorServiceFactory)

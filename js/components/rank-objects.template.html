@@ -18,7 +18,8 @@
 			<tr ng-repeat="object in objects | orderBy:'name'">
 				<td>{{object.name}}</td>
 				<td ng-repeat="category in categories">
-					<input name="ranking" type="number" class="form-control" ng-model="object[category.name].rank"/>
+					<input name="ranking" type="number" class="form-control" ng-model="object[category.name].rank" step="1"
+						ng-change="clampRank(object[category.name])"/>
 				</td>
 			</tr>
 			<tr>
@@ -37,13 +38,56 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="zoomInModalLabel">Focus on {{focussedCategory.name}}</h5>
+				<h2 class="modal-title" id="zoomInModalLabel">Rank for {{focussedCategory.name}}</h2>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body" ng-form name="zoomInForm">
-				body
+				<p class="text-secondary">Rank by dragging. Objects can share ranks.</p>
+				
+				<div class="row">
+					<div class="col-md-6">
+						<div ng-repeat="objectsForRank in ranksInCategory">
+							<div class="card card-info">
+								<div class="card-header">
+									<h3 class="card-title">Rank {{$index + 1}}</h3>
+								</div>
+								<div class="card-body">
+									<ul dnd-list="objectsForRank">
+										<li ng-repeat="object in objectsForRank"
+											dnd-draggable="object"
+											dnd-moved="objectsForRank.splice($index, 1) && syncObjects()"
+											dnd-effect-allowed="move">
+											<div dnd-handle class="handle left">:::</div>
+											{{object.name}}
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<div class="card card-info">
+							<div class="card-header">
+								<h3 class="card-title">Unranked objects</h3>
+							</div>
+							<div class="card-body">
+								<ul dnd-list="objectsNotRanked">
+									<li ng-repeat="object in objectsNotRanked"
+										dnd-draggable="object"
+										dnd-moved="objectsNotRanked.splice($index, 1) && syncObjects()"
+										dnd-effect-allowed="move">
+										<div dnd-handle class="handle left">:::</div>
+										{{object.name}}
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<pre>{{modelAsJson}}</pre>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Finish</button>
