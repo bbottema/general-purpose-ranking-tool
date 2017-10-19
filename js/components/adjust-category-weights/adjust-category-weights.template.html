@@ -1,0 +1,15 @@
+<div class="card">
+	<div class="card-body">
+		<h2 class="text-left">Adjust weights (optional)</h2>
+		
+		
+		<div class="row" style="margin-bottom: .1em" ng-repeat="category in categories">
+			<div class="col-md-6">
+				{{category.name}}
+			</div>
+			<div class="col-md-6">
+				<input name="categoryWeightInput" type="number" step=".1" class="form-control" ng-model="category.weight"/>
+			</div>
+		</div>
+	</div>
+</div>

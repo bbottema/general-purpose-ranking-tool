@@ -1,0 +1,21 @@
+<div class="card">
+	<div class="card-body">
+		<h2 class="text-left">Add categories</h2>
+		<div class="form-inline" style="margin-bottom: .1em" ng-repeat="category in categories">
+			<div class="form-group">
+				<input name="categoryInput" type="text" class="form-control" ng-model="category.name"/>
+			</div>&nbsp;
+			<button type="button btn-sm" class="btn btn-light" ng-click="removeCategory(category)">Remove</button>
+		</div>
+		
+		<div class="form-inline" style="margin-top: .1em">
+			<div class="form-group" ng-form name="categoryNewForm">
+				<input name="objectInput" type="text" class="form-control input-lg" ng-model="newCategoryName"
+					   ng-keyup="$event.keyCode == 13 && addCategory(newCategoryName)"/>
+			</div>&nbsp;
+			<button type="button" class="btn btn-secondary" ng-click="addCategory(newCategoryName)"
+					ng-disabled="!newCategoryName">Add
+			</button>
+		</div>
+	</div>
+</div>

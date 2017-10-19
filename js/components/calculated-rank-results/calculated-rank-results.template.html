@@ -1,0 +1,22 @@
+<div class="card">
+	<div class="card-body" style="text-align: center">
+		<h2>Calculated Ranking</h2>
+		
+		<table class="table">
+			<thead>
+			<tr>
+				<th>Rank</th>
+				<th>Object</th>
+				<th>(Technical rank)</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="object in calculateWeightedRanking()" style="color:{{colorizeForRank(object)}}">
+				<td>{{object.absoluteRank}}</td>
+				<td>{{object.name}}</td>
+				<td>{{object.weightedRank | number:2}}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

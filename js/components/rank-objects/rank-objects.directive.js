@@ -6,7 +6,7 @@ const RankObjectsDirectiveFactory = function($timeout) {
             categories: '=',
             showHint: '='
         },
-        templateUrl: 'js/components/rank-objects.template.html',
+        templateUrl: 'js/components/rank-objects/rank-objects.template.html',
         controller: function($scope) {
 
             $scope.clampRank = function(objectRanking) {
