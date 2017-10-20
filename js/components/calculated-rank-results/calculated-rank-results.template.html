@@ -1,22 +1,44 @@
-<div class="card">
-	<div class="card-body" style="text-align: center">
-		<h2>Calculated Ranking</h2>
-		
-		<table class="table">
-			<thead>
-			<tr>
-				<th>Rank</th>
-				<th>Object</th>
-				<th>(Technical rank)</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr ng-repeat="object in calculateWeightedRanking()" style="color:{{colorizeForRank(object)}}">
-				<td>{{object.absoluteRank}}</td>
-				<td>{{object.name}}</td>
-				<td>{{object.weightedRank | number:2}}</td>
-			</tr>
-			</tbody>
-		</table>
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-body" style="text-align: center">
+				<h2>Calculated Ranking</h2>
+				
+				<table class="table">
+					<thead>
+					<tr>
+						<th>Rank</th>
+						<th>Object</th>
+						<th>(Technical rank)</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="object in calculateWeightedRanking()" style="color:{{colorizeForRank(object)}}">
+						<td>{{object.absoluteRank}}</td>
+						<td>{{object.name}}</td>
+						<td>{{object.weightedRank | number:2}}</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-body" style="text-align: center">
+				<h2>Object Radar</h2>
+				
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" class="btn btn-light" ng-click="userAspect = 'area'">Area</button>
+					<button type="button" class="btn btn-light" ng-click="userAspect = 'line'">Line</button>
+					<button type="button" class="btn btn-light" ng-click="userAspect = 'rose'">Rose</button>
+				</div>
+				
+				<div zingchart id="chart-1" zc-json="myJson" zc-width="100%" zc-height="600"></div>
+			</div>
+		</div>
 	</div>
 </div>

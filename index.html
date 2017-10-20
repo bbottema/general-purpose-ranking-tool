@@ -47,10 +47,8 @@
 			</div>
 		</div>
 
-		<div class="row" id="result" ng-show="appCtrl.ranking.length">
-			<div class="col-md-12">
-				<calculated-rank-results></calculated-rank-results>
-			</div>
+		<div id="result" ng-show="appCtrl.ranking.length">
+			<calculated-rank-results></calculated-rank-results>
 		</div>
 
 		<div class="row" ng-show="appCtrl.objects.length || appCtrl.categories.length">
@@ -100,16 +98,22 @@
 		</div>
 	</div>
 
-</div><!-- /.container -->
+</div>
 
+<!-- 3rd party libraries and frameworks -->
 <script src="js/lib/jquery-3.2.1.slim.min.js"></script>
 <script src="js/lib/popper.min.js"></script>
 <script src="js/lib/bootstrap.min.js"></script>
 <script src="js/lib/lodash.min.js"></script>
+<script src="js/lib/zingchart.min.js"></script>
 <script src="js/lib/angular.min.js"></script>
+
+<!-- 3rd party angular components -->
 <script src="js/lib/angular-animate.min.js"></script>
 <script src="js/lib/angular-drag-and-drop-lists.min.js"></script>
+<script src="js/lib/zingchart-angularjs.js"></script>
 
+<!-- application components -->
 <script src="js/controllers/ApplicationController.js"></script>
 <script src="js/services/ColorService.js"></script>
 <script src="js/services/RankingService.js"></script>
