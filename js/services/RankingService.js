@@ -89,11 +89,11 @@ function RankingServiceFactory(SAMPLE_PRESET) {
             return false;
         },
         canRedistribute: function(category) {
-            return _.every(RankingService.objects, function(object) {
-                    return !object[category.name].rank || object[category.name].rank < RankingService.objects.length;
+            return !_.some(RankingService.objects, function(object) {
+                    return object[category.name].rank >= RankingService.objects.length;
                 }) ||
-                _.every(RankingService.objects, function(object) {
-                    return !object[category.name].rank || object[category.name].rank > 1;
+                !_.some(RankingService.objects, function(object) {
+                    return object[category.name].rank === 1;
                 });
         },
         canClamp: function(category) {
