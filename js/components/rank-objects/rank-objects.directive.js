@@ -9,7 +9,7 @@ const RankObjectsDirectiveFactory = function($timeout) {
         templateUrl: 'js/components/rank-objects/rank-objects.template.html',
         controller: function($scope) {
 
-            $scope.clampRank = function(objectRanking) {
+            $scope.clampRankWhenAssigningRank = function(objectRanking) {
                 if (typeof objectRanking.rank === 'number') {
                     objectRanking.rank = Math.min(Math.max(objectRanking.rank, 1), $scope.objects.length);
                     return false;
@@ -20,7 +20,9 @@ const RankObjectsDirectiveFactory = function($timeout) {
             $scope.focusCategory = function(category) {
                 $scope.focussedCategory = category;
 
-                $scope.ranksInCategory = _.times($scope.objects.length, function() { return []; });
+                $scope.ranksInCategory = _.times($scope.objects.length, function() {
+                    return [];
+                });
                 $scope.objectsNotRanked = [];
                 $scope.objects.forEach(function(object) {
                     var objectRanking = object[category.name];
@@ -32,7 +34,7 @@ const RankObjectsDirectiveFactory = function($timeout) {
                 });
             };
 
-            $scope.syncObjects = function(){
+            $scope.syncObjects = function() {
                 // sync the rank property of the objects to their respective index in the rank list
                 for (var i = 0; i < $scope.ranksInCategory.length; i++) {
                     $scope.ranksInCategory[i].forEach(function(objectForRank) {

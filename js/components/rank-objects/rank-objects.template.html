@@ -19,14 +19,36 @@
 				<td>{{object.name}}</td>
 				<td ng-repeat="category in categories">
 					<input name="ranking" type="number" class="form-control" ng-model="object[category.name].rank" step="1"
-						ng-change="clampRank(object[category.name])"/>
+						ng-change="clampRankWhenAssigningRank(object[category.name])"/>
 				</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
 				<td ng-repeat="category in categories">
-					<button type="button" class="btn btn-block btn-secondary" data-toggle="modal" data-target="#zoomInModal"
-							ng-click="focusCategory(category)">Zoom in</button>
+					<button type="button" class="btn btn-sm btn-block btn-secondary" data-toggle="modal" data-target="#zoomInModal"
+							ng-click="focusCategory(category)">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+					<button type="button" class="btn btn-sm btn-block btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btnGroupDrop1">
+						<i class="fa fa-wrench" aria-hidden="true"></i>
+					</button>
+					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1" ng-controller="CategoryRankingHelperController as catRankCtrl">
+						<button class="dropdown-item" type="button"
+								ng-disabled="!catRankCtrl.canCondense(category)"
+								ng-click="catRankCtrl.condenseForCategory(category)">
+							Condense: cut empty ranks
+						</button>
+						<button class="dropdown-item" type="button"
+								ng-disabled="!catRankCtrl.canRedistribute(category)"
+								ng-click="catRankCtrl.redistributeForCategory(category)">
+							Redistribute: min max spread
+						</button>
+						<button class="dropdown-item" type="button"
+								ng-disabled="!catRankCtrl.canClamp(category)"
+								ng-click="catRankCtrl.clampForCategory(category)">
+							Clamp: reassign lowest rank
+						</button>
+					</div>
 				</td>
 			</tr>
 			</tbody>

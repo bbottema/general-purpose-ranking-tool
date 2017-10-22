@@ -72,6 +72,53 @@ function RankingServiceFactory(SAMPLE_PRESET) {
                 }
             }
         },
+        canCondense: function(category) {
+            if (category) {
+                const ranksUnoccupied = _.times(RankingService.objects.length, _.constant(true));
+                RankingService.objects.forEach(function(object) {
+                    var categoryRanking = object[category.name];
+                    if (categoryRanking && categoryRanking.rank) {
+                        ranksUnoccupied[categoryRanking.rank - 1] = false;
+                    }
+                });
+                return _.some(ranksUnoccupied);
+            }
+            return false;
+        },
+        canRedistribute: function(category) {
+            return true;
+        },
+        canClamp: function(category) {
+            return false;
+        },
+        condenseForCategory: function(category) {
+            const objectsSortedByRankForCategory = _.sortBy(RankingService.objects, category.name + '.rank');
+            console.info('current ranking:', _.map(objectsSortedByRankForCategory, category.name + '.rank'));
+
+            for (var currentRank = 1; currentRank <= objectsSortedByRankForCategory.length; currentRank++) {
+                for (var i = 0; i < objectsSortedByRankForCategory.length; i++) {
+                    var currentObjectForCategory = objectsSortedByRankForCategory[i][category.name];
+                    if (currentObjectForCategory && currentObjectForCategory.rank) {
+                        if (currentObjectForCategory.rank == currentRank) {
+                            break; // current rank is occupied, continue with next rank
+                        } else if (currentObjectForCategory.rank > currentRank) {
+                            // current rank is not occupied, move all lower ranks up
+                            for (var j = i; j < objectsSortedByRankForCategory.length; j++) {
+                                var lowerRanked = objectsSortedByRankForCategory[j][category.name];
+                                lowerRanked && lowerRanked.rank && lowerRanked.rank--
+                            }
+                            currentRank--; // in case multiple objects share current rank
+                            break;
+                        }
+                    }
+                }
+                console.info('current rank and result so far:', currentRank, _.map(objectsSortedByRankForCategory, category.name + '.rank'));
+            }
+        },
+        redistributeForCategory: function(category) {
+        },
+        clampForCategory: function(category) {
+        },
         exportData: function() {
             return {
                 objects: _.map(RankingService.objects, _.partialRight(_.omit, ['weightedRank', 'absoluteRank'])),
@@ -93,4 +140,4 @@ function RankingServiceFactory(SAMPLE_PRESET) {
         }
     };
     return RankingService;
-};
+}
