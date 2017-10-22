@@ -73,15 +73,18 @@ function RankingServiceFactory(SAMPLE_PRESET) {
             }
         },
         canCondense: function(category) {
-            if (category) {
-                const ranksUnoccupied = _.times(RankingService.objects.length, _.constant(true));
-                RankingService.objects.forEach(function(object) {
-                    var categoryRanking = object[category.name];
-                    if (categoryRanking && categoryRanking.rank) {
-                        ranksUnoccupied[categoryRanking.rank - 1] = false;
+            const objectsSortedByRankForCategory = _.sortBy(RankingService.objects, category.name + '.rank');
+            for (var currentRank = 1; currentRank <= objectsSortedByRankForCategory.length; currentRank++) {
+                for (var i = 0; i < objectsSortedByRankForCategory.length; i++) {
+                    var currentObjectForCategory = objectsSortedByRankForCategory[i][category.name];
+                    if (currentObjectForCategory && currentObjectForCategory.rank) {
+                        if (currentObjectForCategory.rank === currentRank) {
+                            break; // current rank is occupied, continue with next rank
+                        } else if (currentObjectForCategory.rank > currentRank) {
+                            return true;
+                        }
                     }
-                });
-                return _.some(ranksUnoccupied);
+                }
             }
             return false;
         },
@@ -89,7 +92,9 @@ function RankingServiceFactory(SAMPLE_PRESET) {
             return true;
         },
         canClamp: function(category) {
-            return false;
+            return _.some(RankingService.objects, function(object) {
+                return object[category.name] && object[category.name].rank > RankingService.objects.length;
+            });
         },
         condenseForCategory: function(category) {
             const objectsSortedByRankForCategory = _.sortBy(RankingService.objects, category.name + '.rank');
@@ -99,7 +104,7 @@ function RankingServiceFactory(SAMPLE_PRESET) {
                 for (var i = 0; i < objectsSortedByRankForCategory.length; i++) {
                     var currentObjectForCategory = objectsSortedByRankForCategory[i][category.name];
                     if (currentObjectForCategory && currentObjectForCategory.rank) {
-                        if (currentObjectForCategory.rank == currentRank) {
+                        if (currentObjectForCategory.rank === currentRank) {
                             break; // current rank is occupied, continue with next rank
                         } else if (currentObjectForCategory.rank > currentRank) {
                             // current rank is not occupied, move all lower ranks up
@@ -118,6 +123,12 @@ function RankingServiceFactory(SAMPLE_PRESET) {
         redistributeForCategory: function(category) {
         },
         clampForCategory: function(category) {
+            RankingService.objects.forEach(function(object) {
+                var objectRanking = object[category.name];
+                if (objectRanking && objectRanking.rank) {
+                    objectRanking.rank = Math.min(objectRanking.rank, RankingService.objects.length);
+                }
+            });
         },
         exportData: function() {
             return {
