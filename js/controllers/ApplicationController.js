@@ -1,4 +1,4 @@
-function ApplicationController(RankingService, ColorService) {
+function ApplicationController(RankingService) {
     this.objects = RankingService.objects;
     this.categories = RankingService.categories;
     this.ranking = RankingService.ranking;

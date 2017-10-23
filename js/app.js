@@ -1,7 +1,8 @@
 angular.module('rankingTool', ['ngAnimate', 'dndLists', 'zingchart-angularjs'])
 
     .factory('RankingService', RankingServiceFactory)
-    .factory('ColorService', ColorServiceFactory)
+    .factory('ColorUtil', ColorUtilFactory)
+    .factory('ScaleUtil', ScaleUtilFactory)
     .controller('ApplicationController', ApplicationController)
     .controller('CategoryRankingHelperController', CategoryRankingHelperController)
     .constant('SAMPLE_PRESET', SAMPLE_PRESET)

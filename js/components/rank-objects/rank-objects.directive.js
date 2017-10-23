@@ -33,6 +33,13 @@ const RankObjectsDirectiveFactory = function($timeout) {
                     }
                 });
             };
+            // needed to update category popup to reflect changes to the source objects
+            // this has to be done manually, because somehow either Angular or dnd-list changes
+            // the $$hashkey on the objects (have become different objects to Angular)
+            // sad face here...
+            $scope.refocusCategory = function() {
+              $scope.focusCategory($scope.focussedCategory);
+            };
 
             $scope.syncObjects = function() {
                 // sync the rank property of the objects to their respective index in the rank list

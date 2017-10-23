@@ -1,20 +1,20 @@
-function RankingServiceFactory(SAMPLE_PRESET) {
+function RankingServiceFactory(SAMPLE_PRESET, ScaleUtil) {
     const RankingService = {
         objects: [],
         categories: [],
         ranking: [],
 
         addObject: function(name) {
-            RankingService.objects.push({ name: name });
+            RankingService.objects.push({name: name});
         },
         removeObject: function(object) {
-            _.remove(RankingService.objects, { name: object.name });
+            _.remove(RankingService.objects, {name: object.name});
         },
         addCategory: function(name) {
-            RankingService.categories.push({ name: name, weight: 1 });
+            RankingService.categories.push({name: name, weight: 1});
         },
         removeCategory: function(category) {
-            _.remove(RankingService.categories, { name: category.name });
+            _.remove(RankingService.categories, {name: category.name});
         },
         calculateWeightedRanking: function() {
             RankingService.ranking.length = 0;
@@ -52,10 +52,7 @@ function RankingServiceFactory(SAMPLE_PRESET) {
             }
 
             function normalizeRankToGlbalScale(denormalizedRank, valuesScaleA, maxScaleB) {
-                const minValueScaleA = _.min(valuesScaleA);
-                const maxValueScaleA = _.max(valuesScaleA);
-                const percentage = (denormalizedRank - minValueScaleA) / (maxValueScaleA - minValueScaleA);
-                return percentage * (maxScaleB - 1) + 1;
+                return ScaleUtil.translateToScale(denormalizedRank, _.min(valuesScaleA), _.max(valuesScaleA), 1, maxScaleB);
             }
 
             function calculateArithmeticWeight(weightFactor, weightFactors) {
@@ -126,6 +123,17 @@ function RankingServiceFactory(SAMPLE_PRESET) {
             }
         },
         redistributeForCategory: function(category) {
+            const ranksForCategory = _.map(RankingService.objects, category.name + '.rank');
+            const minRanked = _.min(ranksForCategory);
+            const maxRanked = _.max(ranksForCategory);
+
+            RankingService.objects.forEach(function(object) {
+                const categoryRanking = object[category.name];
+                if (categoryRanking && categoryRanking.rank) {
+                    var scaledRank = ScaleUtil.translateToScale(categoryRanking.rank, minRanked, maxRanked, 1, RankingService.objects.length);
+                    categoryRanking.rank = _.round(scaledRank);
+                }
+            });
         },
         clampForCategory: function(category) {
             RankingService.objects.forEach(function(object) {

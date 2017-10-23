@@ -66,10 +66,43 @@
 				</button>
 			</div>
 			<div class="modal-body" ng-form name="zoomInForm">
-				<p class="text-secondary">Rank by dragging. Objects can share ranks.</p>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-9">
+								<p class="text-secondary">Rank by dragging. Objects can share ranks.</p>
+							</div>
+							<div class="col-md-3">
+								<button type="button" class="btn btn-sm pull-right btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btnGroupDrop2">
+									<i class="fa fa-wrench" aria-hidden="true"></i>
+								</button>
+								<div class="dropdown-menu" aria-labelledby="btnGroupDrop2" ng-controller="CategoryRankingHelperController as catRankCtrl" ng-if="focussedCategory">
+									<button type="button" class="dropdown-item"
+											ng-disabled="!catRankCtrl.canCondense(focussedCategory)"
+											ng-click="catRankCtrl.condenseForCategory(focussedCategory); refocusCategory()">
+										Condense: remove ranking gaps
+									</button>
+									<button type="button" class="dropdown-item"
+											ng-disabled="!catRankCtrl.canRedistribute(focussedCategory)"
+											ng-click="catRankCtrl.redistributeForCategory(focussedCategory); refocusCategory()">
+										Redistribute: min max spread
+									</button>
+									<button type="button" class="dropdown-item"
+											ng-disabled="!catRankCtrl.canClamp(focussedCategory)"
+											ng-click="catRankCtrl.clampForCategory(focussedCategory); refocusCategory()">
+										Clamp: reassign lowest rank
+									</button>
+								</div>
+								
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+				</div>
 				
 				<div class="row">
 					<div class="col-md-6">
+						
 						<div ng-repeat="objectsForRank in ranksInCategory">
 							<div class="card card-info">
 								<div class="card-header">
@@ -108,7 +141,6 @@
 							</div>
 						</div>
 					</div>
-					<pre>{{modelAsJson}}</pre>
 				</div>
 			</div>
 			<div class="modal-footer">

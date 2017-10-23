@@ -1,5 +1,5 @@
-function ColorServiceFactory() {
-    const ColorService = {
+function ColorUtilFactory() {
+    const ColorUtil = {
         colorize: function(colorAsMinValue, colorAsMaxValue, percentage, curveFunction) {
             const ratio = curveFunction(percentage, 0, 1);
 
@@ -21,5 +21,5 @@ function ColorServiceFactory() {
             return startValue + endValue * percentComplete * percentComplete;
         }
     };
-    return ColorService;
+    return ColorUtil;
 }
