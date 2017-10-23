@@ -19,7 +19,8 @@
 				<td>{{object.name}}</td>
 				<td ng-repeat="category in categories">
 					<input name="ranking" type="number" class="form-control" ng-model="object[category.name].rank" step="1"
-						ng-change="clampRankWhenAssigningRank(object[category.name])"/>
+						   ng-class="{ 'invalid': object[category.name].rank > objects.length }"
+						   ng-change="clampRankWhenAssigningRank(object[category.name])"/>
 				</td>
 			</tr>
 			<tr>

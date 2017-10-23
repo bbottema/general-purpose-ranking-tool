@@ -67,3 +67,7 @@ body {
 button.dropdown-item:not([disabled]) {
 	cursor: pointer;
 }
+
+input.invalid {
+	background-color: palevioletred;
+}

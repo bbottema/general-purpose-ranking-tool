@@ -46,7 +46,7 @@ function RankingServiceFactory(SAMPLE_PRESET, ScaleUtil) {
                 return objects.length && categories.length &&
                     _.reduce(objects, function(objectsComplete, object) {
                         return objectsComplete && _.reduce(categories, function(objectsComplete, category) {
-                                return objectsComplete && object[category.name] && object[category.name].rank;
+                                return objectsComplete && _.inRange(_.get(object, category.name + '.rank'), 1, objects.length + 1);
                             }, objectsComplete);
                     }, true);
             }
@@ -100,7 +100,7 @@ function RankingServiceFactory(SAMPLE_PRESET, ScaleUtil) {
         },
         condenseForCategory: function(category) {
             const objectsSortedByRankForCategory = _.sortBy(RankingService.objects, category.name + '.rank');
-            console.info('current ranking:', _.map(objectsSortedByRankForCategory, category.name + '.rank'));
+            console.debug('current ranking:', _.map(objectsSortedByRankForCategory, category.name + '.rank'));
 
             for (var currentRank = 1; currentRank <= objectsSortedByRankForCategory.length; currentRank++) {
                 for (var i = 0; i < objectsSortedByRankForCategory.length; i++) {
@@ -119,7 +119,7 @@ function RankingServiceFactory(SAMPLE_PRESET, ScaleUtil) {
                         }
                     }
                 }
-                console.info('current rank and result so far:', currentRank, _.map(objectsSortedByRankForCategory, category.name + '.rank'));
+                console.debug('current rank and result so far:', currentRank, _.map(objectsSortedByRankForCategory, category.name + '.rank'));
             }
         },
         redistributeForCategory: function(category) {
